@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Subscription} from '../../models/subscription';
 import {SubscriptionService} from '../../services/subscription.service';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-subscription-list',
@@ -9,12 +10,12 @@ import {SubscriptionService} from '../../services/subscription.service';
 })
 export class SubscriptionListComponent implements OnInit {
 
-  subscriptionList: Subscription[];
+  subscriptionList: Observable<Subscription[]>;
 
   constructor(private subscriptionService: SubscriptionService) { }
 
   ngOnInit() {
-    this.subscriptionList = this.subscriptionService.getSubscriptionList();
+    this.subscriptionList = this.subscriptionService.subscriptionList;
   }
 
 }

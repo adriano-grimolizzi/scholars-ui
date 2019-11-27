@@ -1,30 +1,22 @@
 import { Injectable } from '@angular/core';
 import { Subscription } from '../models/subscription';
+import { Socket } from 'ngx-socket-io';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SubscriptionService {
 
-  subscriptionList: Subscription[];
-
-  getSubscriptionList() {
-    return this.subscriptionList;
-  }
+  subscriptionList = this.socket.fromEvent<Subscription[]>('subscriptionList');
 
   saveSubscription(subscription: Subscription) {
-    this.subscriptionList.push(subscription);
+    const subscriptionToBeSaved = new Subscription();
+    subscriptionToBeSaved.name = subscription.name;
+    subscriptionToBeSaved.song = subscription.song;
+    subscriptionToBeSaved.artist = subscription.artist;
+
+    this.socket.emit('addSubscription', subscriptionToBeSaved);
   }
 
-  constructor() {
-    this.subscriptionList = [{
-      name: 'Adriano',
-      song: 'Black',
-      artist: 'Pearl Jam'
-    }, {
-      name: 'Valerio',
-      song: 'Mr. Brightside',
-      artist: 'Killers'
-    }];
-  }
+  constructor(private socket: Socket) {}
 }

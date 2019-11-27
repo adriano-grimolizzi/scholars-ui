@@ -1,12 +1,16 @@
 <table>
   <tr>
+    <th>Id</th>
     <th>Name</th>
     <th>Song</th>
     <th>Artist</th>
   </tr>
-  <tr *ngFor="let subscription of subscriptionList">
+  <tr *ngFor="let subscription of subscriptionList | async">
+    <td>{{subscription.id}}</td>
     <td>{{subscription.name}}</td>
     <td>{{subscription.song}}</td>
     <td>{{subscription.artist}}</td>
   </tr>
 </table>
+
+<!--{{ subscriptionList | async | json }}-->

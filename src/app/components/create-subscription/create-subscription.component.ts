@@ -13,10 +13,17 @@ export class CreateSubscriptionComponent {
   public subscription: Subscription;
 
   constructor(private subscriptionService: SubscriptionService) {
-    this.subscription = new Subscription('', '', '');
+    this.subscription = new Subscription();
   }
 
   createStock() {
     this.subscriptionService.saveSubscription(this.subscription);
+    this.clearSubscription();
+  }
+
+  private clearSubscription() {
+    this.subscription.name = '';
+    this.subscription.song = '';
+    this.subscription.artist = '';
   }
 }
