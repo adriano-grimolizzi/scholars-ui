@@ -1,0 +1,34 @@
+.component-container {
+  border-style: solid;
+  border-color: darkred;
+  border-width: 5px;
+
+  background-color: whitesmoke;
+}
+
+.title-container {
+  border-style: solid;
+  border-color: red;
+  border-width: 5px;
+}
+
+h1 {
+  margin: auto;
+}
+
+.form-group {
+  border-style: solid;
+  border-color: blue;
+  border-width: 5px;
+}
+
+.subscription-label {
+  border-style: solid;
+  display: block;
+  width: 70px;
+  text-align: center;
+}
+
+.subscription-container {
+  display: flex;
+}

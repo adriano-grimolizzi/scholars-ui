@@ -1,37 +1,50 @@
-<div class="form-group">
-  <form (ngSubmit)="createStock()">
-    <div class="stock-name">
-
-      <div class="subscription-name">
-        <label for="subscriptionName">Name</label>
-        <input type="text"
-               id="subscriptionName"
-               name="subscriptionName"
-               placeholder="name"
-               [(ngModel)]="subscription.name">
-      </div>
-
-      <div class="subscription-song">
-        <label for="subscriptionSong">Song</label>
-        <input type="text"
-               id="subscriptionSong"
-               name="subscriptionSong"
-               placeholder="song"
-               [(ngModel)]="subscription.song">
-      </div>
-
-      <div class="subscription-artist">
-        <label for="subscriptionArtist">Artist</label>
-        <input type="text"
-               id="subscriptionArtist"
-               name="subscriptionArtist"
-               placeholder="artist"
-               [(ngModel)]="subscription.artist">
-      </div>
-    </div>
-    <button type="submit">Create</button>
-  </form>
+<!--dirty hack to have a slide-in animation. to be improved-->
+<div class="component-container" *ngIf="!isExpanded">
+  <div class="title-container" (click)="switchExpanded()" >
+    <h1>Register!</h1>
+  </div>
 </div>
 
-<!--{{ subscription | json }}-->
+<div class="component-container" *ngIf="isExpanded" [@slideIn]>
+  <div class="title-container" (click)="switchExpanded()" >
+    <h1>Register!</h1>
+  </div>
 
+  <div class="form-group">
+    <form (ngSubmit)="createStock()">
+      <div class="stock-name">
+
+        <div class="subscription-container">
+          <label class="subscription-label"
+                 for="subscriptionName">NAME:</label>
+          <input type="text"
+                 id="subscriptionName"
+                 name="subscriptionName"
+                 placeholder="name"
+                 [(ngModel)]="subscription.name">
+        </div>
+
+        <div class="subscription-container">
+          <label class="subscription-label"
+                 for="subscriptionSong">SONG:</label>
+          <input type="text"
+                 id="subscriptionSong"
+                 name="subscriptionSong"
+                 placeholder="song"
+                 [(ngModel)]="subscription.song">
+        </div>
+
+        <div class="subscription-container">
+          <label class="subscription-label"
+                 for="subscriptionArtist">ARTIST:</label>
+          <input type="text"
+                 id="subscriptionArtist"
+                 name="subscriptionArtist"
+                 placeholder="artist"
+                 [(ngModel)]="subscription.artist">
+        </div>
+      </div>
+      <button type="submit">Create</button>
+    </form>
+  </div>
+</div>
