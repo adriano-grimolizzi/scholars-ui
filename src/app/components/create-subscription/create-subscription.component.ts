@@ -1,30 +1,41 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 import { Subscription } from '../../models/subscription';
 import {SubscriptionService} from '../../services/subscription.service';
-import {animate, style, transition, trigger} from '@angular/animations';
+import {animate, state, style, transition, trigger} from '@angular/animations';
 
 @Component({
   selector: 'app-create-subscription',
   templateUrl: './create-subscription.component.html',
   styleUrls: ['./create-subscription.component.css'],
   animations: [
-    trigger('slideIn', [
-      transition(':enter', [
-        style({transform: 'translateY(+100%)'}),
-        animate('380ms ease-in', style({transform: 'translateY(0%)'}))
-      ])
+    trigger('openOrClosedTrigger', [
+      state('open', style({
+        overflow: 'hidden',
+        height: '*'
+      })),
+      state('close', style({
+        opacity: '0',
+        overflow: 'hidden',
+        height: '0px'
+      })),
+      transition('open => close', animate('500ms ease-in-out')),
+      transition('close => open', animate('500ms ease-in-out'))
     ])
   ]
 })
-export class CreateSubscriptionComponent {
+export class CreateSubscriptionComponent implements OnInit {
 
   public subscription: Subscription;
 
-  public isExpanded = false;
+  public openOrClosed: string;
 
   constructor(private subscriptionService: SubscriptionService) {
     this.subscription = new Subscription();
+  }
+
+  ngOnInit() {
+    this.openOrClosed = 'close';
   }
 
   createStock() {
@@ -39,6 +50,7 @@ export class CreateSubscriptionComponent {
   }
 
   switchExpanded() {
-    this.isExpanded = !this.isExpanded;
+    this.openOrClosed = this.openOrClosed === 'close' ? 'open' : 'close';
   }
+
 }
