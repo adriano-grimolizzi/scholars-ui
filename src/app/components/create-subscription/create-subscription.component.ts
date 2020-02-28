@@ -38,7 +38,7 @@ export class CreateSubscriptionComponent implements OnInit {
     this.openOrClosed = 'close';
   }
 
-  createStock() {
+  createSubscription() {
     this.subscriptionService.saveSubscription(this.subscription);
     this.clearSubscription();
   }

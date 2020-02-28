@@ -2,6 +2,7 @@ table, th , td {
   border: 1px solid grey;
   border-collapse: collapse;
   padding: 5px;
+  margin: 10px;
 }
 
 table tr:nth-child(odd) {
