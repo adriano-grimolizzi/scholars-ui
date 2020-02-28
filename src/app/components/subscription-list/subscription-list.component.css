@@ -1,14 +1,15 @@
-table, th , td {
-  border: 1px solid grey;
-  border-collapse: collapse;
-  padding: 5px;
-  margin: 10px;
+table {
+  width: 100%;
 }
 
-table tr:nth-child(odd) {
-  background-color: #f1f1f1;
+.cdk-drag-placeholder {
+  opacity: 0;
 }
 
-table tr:nth-child(even) {
-  background-color: #ffffff;
+.cdk-drag-animating {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.cdk-drop-list-dragging .mat-row:not(.cdk-drag-placeholder) {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }

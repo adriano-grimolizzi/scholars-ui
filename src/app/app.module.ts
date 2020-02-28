@@ -9,7 +9,6 @@ import { AppComponent } from './app.component';
 import { SubscriptionListComponent } from './components/subscription-list/subscription-list.component';
 import { CreateSubscriptionComponent } from './components/create-subscription/create-subscription.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
-import { DraggableComponent } from './draggable/draggable.component';
 import { MatTableModule } from '@angular/material/table';
 
 const config: SocketIoConfig = { url: 'http://localhost:4444', options: {} };
@@ -19,7 +18,6 @@ const config: SocketIoConfig = { url: 'http://localhost:4444', options: {} };
     AppComponent,
     SubscriptionListComponent,
     CreateSubscriptionComponent,
-    DraggableComponent,
   ],
   imports: [
     BrowserModule,
