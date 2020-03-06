@@ -1,45 +1,48 @@
 <div class="component-container">
 
   <div class="title-container" (click)="switchExpanded()" >
-    <h1>REGISTER!</h1>
+    <h1>REGISTER !</h1>
   </div>
 
   <div class="form-group"
        [@openOrClosedTrigger]="openOrClosed">
     <form (ngSubmit)="createSubscription()">
-      <div class="stock-name">
 
-        <div class="subscription-container">
-          <label class="subscription-label"
-                 for="subscriptionName">NAME:</label>
-          <input type="text"
-                 id="subscriptionName"
-                 name="subscriptionName"
-                 placeholder="name"
-                 [(ngModel)]="subscription.name">
-        </div>
-
-        <div class="subscription-container">
-          <label class="subscription-label"
-                 for="subscriptionSong">SONG:</label>
-          <input type="text"
-                 id="subscriptionSong"
-                 name="subscriptionSong"
-                 placeholder="song"
-                 [(ngModel)]="subscription.song">
-        </div>
-
-        <div class="subscription-container">
-          <label class="subscription-label"
-                 for="subscriptionArtist">ARTIST:</label>
-          <input type="text"
-                 id="subscriptionArtist"
-                 name="subscriptionArtist"
-                 placeholder="artist"
-                 [(ngModel)]="subscription.artist">
-        </div>
+      <div class="label-and-input">
+        <label class="label"
+               for="subscriptionName">NAME:</label>
+        <input type="text"
+               id="subscriptionName"
+               name="subscriptionName"
+               placeholder="name"
+               [(ngModel)]="subscription.name">
       </div>
-      <button type="submit">Create</button>
+
+      <div class="label-and-input">
+        <label class="label"
+               for="subscriptionSong">SONG:</label>
+        <input type="text"
+               id="subscriptionSong"
+               name="subscriptionSong"
+               placeholder="song"
+               [(ngModel)]="subscription.song">
+      </div>
+
+      <div class="label-and-input">
+        <label class="label"
+               for="subscriptionArtist">ARTIST:</label>
+        <input type="text"
+               id="subscriptionArtist"
+               name="subscriptionArtist"
+               placeholder="artist"
+               [(ngModel)]="subscription.artist">
+      </div>
+
+      <button type="submit"
+              [disabled]="!clearIsEnabled"
+              (click)="clearSubscription()">Clear</button>
+      <button type="submit"
+              [disabled]="!submitIsEnabled">SUBMIT !</button>
     </form>
   </div>
 </div>

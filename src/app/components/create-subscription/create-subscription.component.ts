@@ -28,10 +28,22 @@ export class CreateSubscriptionComponent implements OnInit {
 
   public subscription: Subscription;
 
-  public openOrClosed: string;
+  public openOrClosed = 'open';
 
   constructor(private subscriptionService: SubscriptionService) {
     this.subscription = new Subscription();
+  }
+
+  get submitIsEnabled(): boolean {
+    return this.subscription.artist != null && this.subscription.artist !== ''
+        && this.subscription.name != null && this.subscription.name !== ''
+        && this.subscription.song != null && this.subscription.song !== '';
+  }
+
+  get clearIsEnabled(): boolean {
+    return (this.subscription.artist != null && this.subscription.artist !== '')
+      || (this.subscription.name != null && this.subscription.name !== '')
+      || (this.subscription.song != null && this.subscription.song !== '');
   }
 
   ngOnInit() {
@@ -41,9 +53,10 @@ export class CreateSubscriptionComponent implements OnInit {
   createSubscription() {
     this.subscriptionService.saveSubscription(this.subscription);
     this.clearSubscription();
+    this.switchExpanded();
   }
 
-  private clearSubscription() {
+  clearSubscription() {
     this.subscription.name = '';
     this.subscription.song = '';
     this.subscription.artist = '';
@@ -52,5 +65,4 @@ export class CreateSubscriptionComponent implements OnInit {
   switchExpanded() {
     this.openOrClosed = this.openOrClosed === 'close' ? 'open' : 'close';
   }
-
 }
